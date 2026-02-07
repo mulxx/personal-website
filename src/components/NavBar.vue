@@ -186,15 +186,21 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 1000;
+  /* Fallback background for browsers that don't support backdrop-filter */
+  background: rgba(255, 255, 255, 0.9);
+  /* Modern browsers with backdrop support */
   background: linear-gradient(180deg, rgba(var(--color-primary-rgb), 0.06), transparent);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid transparent;
   transition: all 0.3s ease;
 
   &--scrolled {
     border-bottom-color: var(--color-border);
-    background: linear-gradient(180deg, rgba(var(--color-primary-rgb), 0.08), rgba(0,0,0,0.02));
+    background: linear-gradient(180deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-primary-rgb), 0.02));
+    /* Strengthen the backdrop effect when scrolled */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
   }
 }
 
