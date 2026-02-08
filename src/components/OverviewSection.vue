@@ -152,8 +152,8 @@ const handleImageError = (e) => {
 
 const getHref = (link) => {
   if (!link) return '#'
-  // Absolute http(s) or anchor links are returned as-is
-  if (/^https?:\/\//.test(link) || link.startsWith('#')) return link
+  // Absolute http(s), mailto, or anchor links are returned as-is
+  if (/^(https?:\/\/|mailto:)/.test(link) || link.startsWith('#')) return link
   
   const base = import.meta.env.BASE_URL || '/'
   // If link already includes the base prefix, return as-is
